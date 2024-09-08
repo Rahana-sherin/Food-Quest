@@ -5,20 +5,7 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.topDiv {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-    font-weight: 900;
+    overflow-x: auto; /* Allow horizontal scrolling if necessary */
 }
 
 /* Table Styles */
@@ -26,14 +13,14 @@ h1 {
     width: 100%;
     border-collapse: collapse;
     margin: 0 auto;
-    overflow-x: auto; /* Allow horizontal scrolling on small screens */
 }
 
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
     text-align: left;
-    font-size: 14px; /* Reduce font size for better fit on small screens */
+    font-size: 14px;
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .styled-table thead {
@@ -102,6 +89,7 @@ h1 {
     cursor: pointer;
 }
 
+/* Input Styles */
 input[type="text"] {
     width: 100%;
     padding: 10px;
@@ -114,18 +102,18 @@ input[type="text"] {
 @media (max-width: 768px) {
     .styled-table th,
     .styled-table td {
-        font-size: 12px; /* Adjust font size for smaller screens */
-        padding: 8px; /* Adjust padding for smaller screens */
+        font-size: 12px;
+        padding: 8px;
     }
 
     .modal-content {
-        max-width: 90%; /* Make modal more responsive on smaller screens */
-        width: auto; /* Allow width to be dynamic */
+        max-width: 90%;
+        width: auto;
     }
 
     .action-button {
-        padding: 6px 12px; /* Adjust button padding for smaller screens */
-        font-size: 12px; /* Adjust font size for smaller screens */
+        padding: 6px 12px;
+        font-size: 12px;
     }
 }
 
@@ -141,13 +129,13 @@ input[type="text"] {
     }
 
     h1 {
-        font-size: 18px; /* Reduce font size for smaller screens */
+        font-size: 18px;
     }
 
     .styled-table th,
     .styled-table td {
-        font-size: 10px; /* Further reduce font size for very small screens */
-        padding: 6px; /* Further adjust padding for very small screens */
+        font-size: 10px;
+        padding: 6px;
     }
 
     .modal-content {
@@ -155,7 +143,28 @@ input[type="text"] {
     }
 
     .action-button {
-        padding: 5px 10px; /* Further adjust button padding for very small screens */
-        font-size: 10px; /* Further adjust font size for very small screens */
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+
+    /* Show columns on small screens */
+    .styled-table td {
+        display: table-cell; /* Ensure columns are visible */
+    }
+
+    /* Optionally adjust column widths */
+    .styled-table th:nth-child(6),
+    .styled-table td:nth-child(6) { /* Serial Number */
+        width: 150px;
+    }
+
+    .styled-table th:nth-child(7),
+    .styled-table td:nth-child(7) { /* IP Address */
+        width: 150px;
+    }
+
+    .styled-table th:nth-child(8),
+    .styled-table td:nth-child(8) { /* Anydesk */
+        width: 150px;
     }
 }
