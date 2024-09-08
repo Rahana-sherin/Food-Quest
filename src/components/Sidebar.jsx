@@ -27,7 +27,7 @@ const Sidebar = () => {
       {/* logo */}
       <div className="mb-8">
         <img src={Logo} alt="logo" className="w-38 hidden md:flex" />
-        <img src="/logo_mini.svg" alt="logo" className="w-8 flex md:hidden" />
+        <img src={Logo} alt="logo" className="w-8 flex md:hidden" />
       </div>
       {/* logo */}
 
