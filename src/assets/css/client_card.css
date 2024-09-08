@@ -1,0 +1,17 @@
+/* CSS for the ClientCard */
+.client-card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow */
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    background-color: #bdbeff; /* Initial background color */
+    border-radius: 0.75rem; /* Equivalent to rounded-xl */
+    padding: 1.5rem; /* Equivalent to p-6 */
+    border: 5px solid rgb(171, 162, 255);
+  }
+  
+  .client-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+    background-color: #7270ff; /* Change background color on hover */
+    cursor: pointer;
+    color: white;
+  }
+  
