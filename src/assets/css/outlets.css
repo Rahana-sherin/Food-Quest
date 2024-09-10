@@ -5,22 +5,73 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow-x: auto; /* Allow horizontal scrolling if necessary */
+    width: 84%;
+}
+
+/* Container for horizontal scrolling */
+.table-scroll-container {
+    overflow-x: auto; /* Allow horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    width: 100%;
 }
 
 /* Table Styles */
 .styled-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 0 auto;
+    table-layout: auto; /* Adjust column widths based on content */
+    min-width: 800px; /* Ensure table doesn't shrink too much */
 }
 
+/* Define column widths for better control */
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
     text-align: left;
     font-size: 14px;
     white-space: nowrap; /* Prevent text from wrapping */
+    border: 1px solid #ddd; /* Add border to avoid overlapping */
+}
+
+/* Optional: Specific column widths */
+.styled-table th:nth-child(1),
+.styled-table td:nth-child(1) { /* Department */
+    width: 150px; 
+}
+
+.styled-table th:nth-child(2),
+.styled-table td:nth-child(2) { /* Name */
+    width: 150px;
+}
+
+.styled-table th:nth-child(3),
+.styled-table td:nth-child(3) { /* Device Type */
+    width: 150px;
+}
+
+.styled-table th:nth-child(4),
+.styled-table td:nth-child(4) { /* Brand */
+    width: 150px;
+}
+
+.styled-table th:nth-child(5),
+.styled-table td:nth-child(5) { /* Model */
+    width: 150px;
+}
+
+.styled-table th:nth-child(6),
+.styled-table td:nth-child(6) { /* Serial Number */
+    width: 150px;
+}
+
+.styled-table th:nth-child(7),
+.styled-table td:nth-child(7) { /* IP Address */
+    width: 150px;
+}
+
+.styled-table th:nth-child(8),
+.styled-table td:nth-child(8) { /* Anydesk */
+    width: 150px;
 }
 
 .styled-table thead {
@@ -147,12 +198,7 @@ input[type="text"] {
         font-size: 10px;
     }
 
-    /* Show columns on small screens */
-    .styled-table td {
-        display: table-cell; /* Ensure columns are visible */
-    }
-
-    /* Optionally adjust column widths */
+    /* Adjust column widths on small screens */
     .styled-table th:nth-child(6),
     .styled-table td:nth-child(6) { /* Serial Number */
         width: 150px;

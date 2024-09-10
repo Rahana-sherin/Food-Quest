@@ -1,20 +1,31 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../assets/css/login.css';
-import logo from '../assets/images/food_quest_logo.png'
-
+import "../assets/css/login.css";
+import logo from "../assets/images/food_quest_logo.png";
+import toast, { Toaster } from "react-hot-toast";
 function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    navigate("/");
-    localStorage.setItem("user",email);
-    localStorage.setItem("isLoggedIn",true);    
-
+    if (email === "Itadmin" && password === "FQ@admin$") {
+      navigate("/");
+      localStorage.setItem("user", email);
+      localStorage.setItem("isLoggedIn", true);
+    } else if (email === "Faizal" && password === "FQ@admin$2024") {
+      navigate("/");
+      localStorage.setItem("user", email);
+      localStorage.setItem("isLoggedIn", true);
+    } else {
+      toast.error("Invalid User Name or Password", {
+        duration: 3000,
+        position: "top-right",
+        style: { backgroundColor: "#bd1515", color: "white", padding:"15px" },
+      });
+    }
 
     // Simulate successful login
 
@@ -48,8 +59,9 @@ function Login() {
 
   return (
     <div className="login-container">
+      <Toaster />
       <div className="login-box">
-        <img src={logo} height="200" width="200"  alt="logo" />
+        <img src={logo} height="200" width="200" alt="logo" />
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <form className="login-form" onSubmit={handleLogin}>
           <div className="input-group">
@@ -73,10 +85,14 @@ function Login() {
               required
             />
           </div>
-          <button type="submit" className="login-button">Login</button>
+          <button type="submit" className="login-button">
+            Login
+          </button>
         </form>
         <div className="login-footer">
-          <p>Don't have an account? <a href="/signup">Sign up</a></p>
+          <p>
+            Don't have an account? <a href="/signup">Sign up</a>
+          </p>
         </div>
       </div>
     </div>

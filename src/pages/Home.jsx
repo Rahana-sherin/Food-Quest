@@ -3,6 +3,7 @@ import ClientCard from "../components/ClientCard";
 import { Link } from "react-router-dom";
 import "../assets/css/outlets.css";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newOutlet, setNewOutlet] = useState("");
@@ -36,12 +37,19 @@ const Home = () => {
     localStorage.setItem("outlets", JSON.stringify(updatedOutlets));
 
     closeModal();
+    toast.success("New Outlet Created", {
+      duration: 3000,
+      position: "top-right",
+      style: { backgroundColor: "green", color: "white", padding:"15px" },
+    });
+
   };
   const handleOutletClick = (id) => {
     navigate(`/view_outlet/${id}`);
   };
   return (
     <div className="p-5">
+      <Toaster/>
       <div>
         <div className="flex justify-between items-center justify-between py-4">
           <h1 className="text-lg font-semibold">Outlets</h1>
