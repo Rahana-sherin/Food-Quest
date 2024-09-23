@@ -14,4 +14,22 @@
     cursor: pointer;
     color: white;
   }
+  .action-button {
+    background-color: #4CAF50; /* Green background */
+    color: white;              /* White text */
+    padding: 10px 20px;       /* Some padding */
+    border: none;             /* Remove border */
+    border-radius: 8px;      /* Rounded corners */
+    cursor: pointer;          /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.action-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.action-button:focus {
+    outline: none; /* Remove focus outline */
+}
+
   
