@@ -25,7 +25,7 @@ const Sidebar = () => {
     //{ id: 6, path: "/outlets", name: "Outlets", icon: LuBuilding2 },
   ];
   return (
-    <div style={{backgroundColor:"black"}} className="w-16 md:w-56 fixed left-0 top-0 z-10 h-screen boder-r pt-8 px-4">
+    <div className="w-16 md:w-56 fixed left-0 top-0 z-10 h-screen boder-r pt-8 px-4 bg-white">
       {/* logo */}
       <div className="mb-8">
         <img src={Logo} alt="logo" className="w-38 hidden md:flex" />
@@ -38,8 +38,8 @@ const Sidebar = () => {
         {SIDEBAR_LINKS.map((link, index) => (
           <li
             key={index}
-            className={`font-medium rounded-md py-2 px-5 hover:bg-gray-600 hover:text-black ${
-              activeLink === index ? "bg-yellow text-indigo-500" : ""
+            className={`font-medium rounded-md py-2 px-5 hover:bg-gray-100 hover:text-indigo-500 ${
+              activeLink === index ? "bg-indigo-100 text-indigo-500" : ""
             }`}
           >
             <Link
@@ -48,7 +48,7 @@ const Sidebar = () => {
               onClick={() => handleLinkClick(index)}
             >
               <span>{link.icon()}</span>
-              <span className="text-sm text-white hidden md:flex">
+              <span className="text-sm text-gray-500 hidden md:flex">
                 {link.name}
               </span>
             </Link>
