@@ -34,11 +34,7 @@ function FullDevicetypeChart() {
           const baseType = detail.deviceType.split("-")[0];
 
           if (baseType) { // Check for non-empty baseType
-            if (!deviceTypeCountObj[baseType]) {
-              deviceTypeCountObj[baseType] = 1;
-            } else {
-              deviceTypeCountObj[baseType] += 1;
-            }
+            deviceTypeCountObj[baseType] = (deviceTypeCountObj[baseType] || 0) + 1;
           }
         });
       }
@@ -72,6 +68,7 @@ function FullDevicetypeChart() {
   // Bar chart options
   const options = {
     responsive: true,
+    maintainAspectRatio: false, // Allow the chart to grow with the container
     plugins: {
       legend: {
         position: "top",
@@ -90,7 +87,7 @@ function FullDevicetypeChart() {
           All Device Types and Their Count
         </h1>
       </div>
-      <Box mt={4}>
+      <Box mt={4} style={{ height: "400px" }}> {/* Set a specific height for better responsiveness */}
         {/* Render the bar chart */}
         <Bar data={data} options={options} />
       </Box>
