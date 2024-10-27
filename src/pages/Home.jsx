@@ -67,7 +67,7 @@ const Home = () => {
     <div className="p-5">
       <div>
         <div className="flex justify-between items-center py-4">
-          <h1 className="text-lg font-semibold">Outlets</h1>
+          <h1 className="text-lg font-semibold">Albaik</h1>
           <button className="action-button" onClick={openModal}>
             Add Outlet
           </button>

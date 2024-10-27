@@ -31,6 +31,7 @@ function DeviceDetails() {
 
   const updateDeviceTypeCounts = (outletDetails) => {
     const deviceTypeCountObj = {};
+
     outletDetails.forEach((detail) => {
       const baseType = detail.deviceType.split("-")[0];
       if (baseType) {
@@ -46,22 +47,23 @@ function DeviceDetails() {
         // Track where devices came from
         if (detail.previousOutlet) {
           deviceTypeCountObj[baseType].transferredCount += 1;
+
+          // Ensure it's an array
           if (
             !deviceTypeCountObj[baseType].previousOutlets[detail.previousOutlet]
           ) {
             deviceTypeCountObj[baseType].previousOutlets[
               detail.previousOutlet
-            ] = 0;
+            ] = [];
           }
+
+          // Add the transfer timestamp
           deviceTypeCountObj[baseType].previousOutlets[
             detail.previousOutlet
-          ] += 1;
+          ].push(detail.transferTimestamp);
         }
       }
     });
-
-    // Log all previous outlets for each device type
-    console.log("Previous Outlets:", deviceTypeCountObj);
 
     setDeviceTypeCounts(deviceTypeCountObj);
   };
@@ -94,6 +96,7 @@ function DeviceDetails() {
         const newDeviceData = {
           ...deviceToTransfer,
           previousOutlet: outletName, // Set the previous outlet name
+          transferTimestamp: new Date().toISOString(), // Add the timestamp
         };
 
         // Add the device to the target outlet
@@ -130,6 +133,22 @@ function DeviceDetails() {
       alert("Invalid transfer operation.");
     }
   };
+  const formatDateTime = (timestamp) => {
+    const date = new Date(timestamp);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const year = date.getFullYear();
+
+    let hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    // Convert to 12-hour format
+    hours = hours % 12;
+    hours = hours ? String(hours).padStart(2, "0") : "12"; // the hour '0' should be '12'
+
+    return `${day}-${month}-${year} , ${hours}:${minutes} ${ampm}`;
+  };
 
   return (
     <div>
@@ -164,11 +183,27 @@ function DeviceDetails() {
                     <td>{count}</td>
                     <td>{transferredCount}</td>
                     <td>
-                      {Object.entries(previousOutlets).map(([outlet, num]) => (
-                        <div key={outlet}>
-                          {outlet}: {num}
-                        </div>
-                      ))}
+                      {Object.entries(previousOutlets).map(
+                        ([outlet, timestamps]) => {
+                          if (!Array.isArray(timestamps)) {
+                            console.error(
+                              `Expected an array for ${outlet}, but got:`,
+                              timestamps
+                            );
+                            return null; // Avoid errors if it's not an array
+                          }
+                          return (
+                            <div key={outlet}>
+                              {outlet}: {timestamps.length} transfers
+                              <ul>
+                                {timestamps.map((timestamp, i) => (
+                                  <li key={i}>{formatDateTime(timestamp)}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          );
+                        }
+                      )}
                     </td>
                   </tr>
                 )
